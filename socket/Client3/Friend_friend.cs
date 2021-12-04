@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace Client3
         public Friend_friend()
         {
             InitializeComponent();
+            loadFriend_FriendList();
         }
 
           private void labelLoinClose_Click(object sender, EventArgs e)
@@ -42,6 +44,23 @@ namespace Client3
         private void label_LoinClose_Click(object sender, EventArgs e)
         {
             this.Close();    
+        }
+        public void loadFriend_FriendList()
+        {
+            string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
+            using (MySqlConnection conn = new MySqlConnection(strconn))
+            {
+                conn.Open();
+                string query = "select*from Friend where userId like '" + Properties.Settings.Default.searchID + "' ";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    listBoxFriend_friend.Items.Add(rdr["friendId"] + "\t\t" + rdr["friendNickname"]);
+                }
+                conn.Close();
+            }
         }
     }
 }

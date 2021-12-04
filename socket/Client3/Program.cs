@@ -55,8 +55,9 @@ namespace Client3
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Client3_login());
-            //Application.Run(new LoginForm());
+            //Application.Run(new Client3_login());
+            (new LoginForm()).Show();
+            Application.Run();
         }
     }
 }
