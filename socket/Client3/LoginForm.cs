@@ -5,7 +5,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,18 +16,27 @@ namespace Client3
 {
     public partial class LoginForm : Form
     {
+
+        private static LoginForm _instance = new LoginForm();
+
+        public static LoginForm GetInstance()
+        {
+            return _instance;
+        }
+
         public LoginForm()
         {
             InitializeComponent();
-            textBoxLoginId.Text = Properties.Settings.Default.ID;
+           /* textBoxLoginId.Text = Properties.Settings.Default.ID;
             textBoxLoginPassword.Text = Properties.Settings.Default.Password;
             checkBoxAutoLogin.Checked = Properties.Settings.Default.autoLogIn;
+*/
 
         }
         
         private void labelLoinClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Visible = false;
         }
 
 
@@ -58,7 +70,7 @@ namespace Client3
             using (MySqlConnection conn = new MySqlConnection(strconn))
             {
                 conn.Open();
-                string query = "select * from JoinMassenger where ID ='" + textBoxLoginId.Text + "' and PW = '" + textBoxLoginPassword.Text + "'";
+                string query = "select * from JoinMassenger where ID ='" + textBoxLoginId.Text + "' and cast(AES_DECRYPT(UNHEX(PW), '1') as char(100)) = '" + textBoxLoginPassword.Text + "'";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.ExecuteNonQuery();
                 DataTable dt = new DataTable();
@@ -73,14 +85,17 @@ namespace Client3
                 }
                 else
                 {
-                    Properties.Settings.Default.ID = textBoxLoginId.Text;
-                    this.Close();
-                    ListForm fm = new ListForm();
-                    fm.Show();
+                   // Properties.Settings.Default.ID = textBoxLoginId.Text;
+                    this.Visible = false;
+                    //this.Hide();
+                    ListForm.GetInstance().loadFriendList();
+                    ListForm.GetInstance().loadBirthdayFriend();
+                    ListForm.GetInstance().Show();
+                 
                 }
                 conn.Close();
             }
-            MessageBox.Show(Properties.Settings.Default.ID);
+            //MessageBox.Show(Properties.Settings.Default.ID);
         }
         // 자동 로그인 체크o -> 아이디, 패스워드, 체크o로 저장
         // 자동 로그인 체크 x -> 아이디, 패스워드, 체크x로 저장
@@ -88,19 +103,19 @@ namespace Client3
         {
             if (checkBoxAutoLogin.Checked == true)
             {
-                Properties.Settings.Default.ID = textBoxLoginId.Text;
+               /* Properties.Settings.Default.ID = textBoxLoginId.Text;
                 Properties.Settings.Default.Password = textBoxLoginPassword.Text;
                 Properties.Settings.Default.autoLogIn = true;
-                Properties.Settings.Default.Save();
-                MessageBox.Show(Properties.Settings.Default.ID);
+                Properties.Settings.Default.Save();*/
+               // MessageBox.Show(Properties.Settings.Default.ID);
             }
             else
             {
-                Properties.Settings.Default.ID = null;
+               /* Properties.Settings.Default.ID = null;
                 Properties.Settings.Default.Password = null;
                 Properties.Settings.Default.autoLogIn = false;
-                Properties.Settings.Default.Save();
-                MessageBox.Show(Properties.Settings.Default.ID);
+                Properties.Settings.Default.Save();*/
+                // MessageBox.Show(Properties.Settings.Default.ID);
             }
 
         }
@@ -112,6 +127,14 @@ namespace Client3
         }
 
      
+
+        private void textBoxLoginPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                login();
+            }
+        }
     }
 
 }

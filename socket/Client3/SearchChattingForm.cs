@@ -12,6 +12,12 @@ namespace Client3
 {
     public partial class SearchChattingForm : Form
     {
+        private static SearchChattingForm _instance = new SearchChattingForm();
+
+        public static SearchChattingForm GetInstance()
+        {
+            return _instance;
+        }
         public SearchChattingForm()
         {
             InitializeComponent();

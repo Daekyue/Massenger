@@ -73,6 +73,7 @@ namespace Client3
             this.textBoxLoginPassword.Name = "textBoxLoginPassword";
             this.textBoxLoginPassword.Size = new System.Drawing.Size(143, 18);
             this.textBoxLoginPassword.TabIndex = 3;
+            this.textBoxLoginPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxLoginPassword_KeyDown);
             // 
             // label2
             // 
@@ -117,6 +118,7 @@ namespace Client3
             this.buttonGoLogin.Text = "로그인";
             this.buttonGoLogin.UseVisualStyleBackColor = false;
             this.buttonGoLogin.Click += new System.EventHandler(this.buttonGoLogin_Click);
+           
             // 
             // labelGoJoin
             // 
@@ -195,7 +197,6 @@ namespace Client3
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginForm";
             this.Text = "Login";
- 
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
@@ -206,8 +207,8 @@ namespace Client3
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxLoginId;
-        private System.Windows.Forms.TextBox textBoxLoginPassword;
+        public System.Windows.Forms.TextBox textBoxLoginId;
+        public System.Windows.Forms.TextBox textBoxLoginPassword;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -216,6 +217,6 @@ namespace Client3
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label_LoinClose;
-        private System.Windows.Forms.CheckBox checkBoxAutoLogin;
+        public System.Windows.Forms.CheckBox checkBoxAutoLogin;
     }
 }

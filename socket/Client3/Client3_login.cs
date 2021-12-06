@@ -20,8 +20,8 @@ namespace Client3
         {
             InitializeComponent(); 
 
-            Program.ChatRoom = new Client3_chatroom_list();
-            Program.ChatWindow = new Client3_chat_form();
+           // Program.ChatRoom = new Client3_chatroom_list();
+           // Program.ChatWindow = new Client3_chat_form();
 
             Program.ChatRoom.Visible = false;
             Program.ChatWindow.Visible = false;

@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Client3.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="background" Type="System.String" Scope="User">
-      <Value Profile="(Default)">white</Value>
-    </Setting>
     <Setting Name="ID" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
@@ -19,6 +16,9 @@
     </Setting>
     <Setting Name="friendNickname" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="background" Type="System.String" Scope="User">
+      <Value Profile="(Default)">White</Value>
     </Setting>
   </Settings>
 </SettingsFile>

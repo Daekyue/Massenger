@@ -25,18 +25,6 @@ namespace Client3.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("white")]
-        public string background {
-            get {
-                return ((string)(this["background"]));
-            }
-            set {
-                this["background"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ID {
             get {
@@ -92,6 +80,18 @@ namespace Client3.Properties {
             }
             set {
                 this["friendNickname"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public string background {
+            get {
+                return ((string)(this["background"]));
+            }
+            set {
+                this["background"] = value;
             }
         }
     }

@@ -12,19 +12,29 @@ namespace Client3
 {
     public partial class SetupForm : Form
     {
+        //싱글턴
+        # region
+        private static SetupForm _instance = new SetupForm();
+
+        public static SetupForm GetInstance()
+        {
+            return _instance;
+        }
+
         public SetupForm()
         {
             InitializeComponent();
-            comboBoxBackgroundColor.Text = Properties.Settings.Default.background;
-            textBoxSearchFriendId.Text = Properties.Settings.Default.searchID;
-            labelNowUserId_Setup.Text = Properties.Settings.Default.ID;
+
+            labelNowUserId_Setup.Text = LoginForm.GetInstance().textBoxLoginId.Text;
         }
+        #endregion
+
+        //상단바 컨트롤
+        #region 
         private void labelLoinClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-
         private Point mousePoint;
 
         // 마우스 클릭시 먼저 선언된 mousePoint변수에 현재 마우스 위치값이 들어갑니다.
@@ -42,42 +52,58 @@ namespace Client3
                     this.Top - (mousePoint.Y - e.Y));
             }
         }
+        #endregion
+
+        //채팅방에 채팅텍스트박스 변경하기
         private void buttonBackgroundColor_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.background = comboBoxBackgroundColor.Text;
-            Properties.Settings.Default.Save();
+            string backcolor = comboBoxBackgroundColor.Text;
+            if (backcolor == null)
+            {
+                backcolor = "White";
+            }
+            Color mycolor = ColorTranslator.FromHtml(backcolor);
+            ChattingForm.GetInstance().changeBackcolor(mycolor);
         }
 
-        private void buttonLogout_Click(object sender, EventArgs e)
+        //로그아웃
+        public void buttonLogout_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.background = null;
-            Properties.Settings.Default.Save();
+            LoginForm.GetInstance().Show();
+
+
+            ListForm.GetInstance().Visible = false;
+
+            if (LoginForm.GetInstance().checkBoxAutoLogin.Checked == false)
+            {
+                LoginForm.GetInstance().textBoxLoginId.Clear();
+                LoginForm.GetInstance().textBoxLoginPassword.Clear();
+            }
+
             this.Close();
             foreach (System.Windows.Forms.Form TheForm in this.MdiChildren)
             {
                 TheForm.Dispose();
             }
-            LoginForm lf = new LoginForm();
-            lf.Show();
+
+            this.Visible = false;
+
+            SetupForm.GetInstance().comboBoxBackgroundColor.Text = "White";
+            //Properties.Settings.Default.Save();
 
         }
 
+        //친구찾기
         private void buttonGoSearchFriend_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.searchID = textBoxSearchFriendId.Text;
-            Properties.Settings.Default.Save();
-            /*this.Hide();
-            MessageBox.Show(Properties.Settings.Default.searchID);*/
-            SearchFriend sff = new SearchFriend();
-            sff.ShowDialog();
-            
+            SearchFriend.GetInstance().searchFriendList(textBoxSearchFriendId.Text);
+            SearchFriend.GetInstance().ShowDialog();
         }
 
+        //회원정보 수정
         private void buttonChangeInfo_Click(object sender, EventArgs e)
         {
-           
-            ChangeInfoForm cif = new ChangeInfoForm();
-            cif.ShowDialog();
+            ChangeInfoForm.GetInstance().ShowDialog();
         }
 
 

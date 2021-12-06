@@ -13,11 +13,18 @@ namespace Client3
 {
     public partial class SearchFriend : Form
     {
- 
+        string friendNickname = "";
+        
+        private static SearchFriend _instance = new SearchFriend();
+
+        public static SearchFriend GetInstance()
+        {
+            return _instance;
+        }
         public SearchFriend()
         {
             InitializeComponent();
-            searchFriendList();
+            
         }
         private void labelLoinClose_Click(object sender, EventArgs e)
         {
@@ -42,13 +49,17 @@ namespace Client3
                     this.Top - (mousePoint.Y - e.Y));
             }
         }
-        private void searchFriendList()
+        public void searchFriendList(string search_id)
         {
+            //string search_id = SetupForm.GetInstance().textBoxSearchFriendId.Text;
+
+            //MessageBox.Show(search_id);
+            listBoxResultSearchFriend.Items.Clear();
             string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
             using (MySqlConnection conn = new MySqlConnection(strconn))
             {
                 conn.Open();
-                string query = "select*from s5532761.JoinMassenger WHERE ID ='" + Properties.Settings.Default.searchID + "'";  //string query = "select * from JoinMassenger where ID ='" + textBoxLoginId.Text + "' and PW = '" + textBoxLoginPassword.Text + "'";
+                string query = "select*from s5532761.JoinMassenger WHERE ID ='" + search_id + "'";  //string query = "select * from JoinMassenger where ID ='" + textBoxLoginId.Text + "' and PW = '" + textBoxLoginPassword.Text + "'";
                 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
@@ -58,18 +69,27 @@ namespace Client3
                 {
                     listBoxResultSearchFriend.Items.Add(rdr["ID"] + "  " + rdr["Name"] + " " + rdr["Nickname"]);
                     string loadFriendNickname = rdr["Nickname"].ToString();
-                    Properties.Settings.Default.friendNickname = loadFriendNickname;
-                    Properties.Settings.Default.Save();
+                    friendNickname = loadFriendNickname;
+                   // Properties.Settings.Default.Save();
+                    //search_id = loadFriendNickname;
                 }
 
                 conn.Close();
             }
         }
+        
         private void buttonAddFriend_Click(object sender, EventArgs e)
         {
-            insert_Friend();
+            string selected_string = listBoxResultSearchFriend.SelectedItem.ToString();
+            string[] temp_string= selected_string.Split(' ');
+
+
+            string search_id = temp_string[0];
+            insert_Friend(search_id);
+            ListForm.GetInstance().listBoxFriendList.Items.Clear();
+            ListForm.GetInstance().loadFriendList();
         }
-        private void insert_Friend()//listBoxResultSearchFriend_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void insert_Friend(string search_id)//listBoxResultSearchFriend_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (listBoxResultSearchFriend.SelectedIndex == -1) // 선택이 없을 경우
             {
@@ -80,8 +100,10 @@ namespace Client3
                 string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
                 using (MySqlConnection conn = new MySqlConnection(strconn))
                 {
+                    string user_id = LoginForm.GetInstance().textBoxLoginId.Text;
+                    //string search_id = SetupForm.GetInstance().textBoxSearchFriendId.Text;
                     conn.Open();
-                    string query = "INSERT INTO Friend(userId, friendId, friendNickname) values('" + Properties.Settings.Default.ID + "', '" + Properties.Settings.Default.searchID + "','" + Properties.Settings.Default.friendNickname + "') ";
+                    string query = "INSERT INTO Friend(userId, friendId, friendNickname) values('" + user_id + "', '" + search_id + "','" + friendNickname + "') ";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.ExecuteNonQuery();                 
                 }
@@ -93,8 +115,14 @@ namespace Client3
 
         private void buttonSearchFriend_friend_Click(object sender, EventArgs e)
         {
-            Friend_friend fff = new Friend_friend();
-            fff.ShowDialog();
+            string selected_string = listBoxResultSearchFriend.SelectedItem.ToString();
+            string[] temp_string = selected_string.Split(' ');
+
+            Friend_friend.GetInstance().loadFriend_FriendList(temp_string[0]);
+
+            //
+            //Friend_friend.GetInstance().loadFriend_FriendList()
+            Friend_friend.GetInstance().ShowDialog();
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)

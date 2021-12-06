@@ -273,10 +273,10 @@ namespace Client3
         private System.Windows.Forms.Label labelNowUserId_Setup;
         private System.Windows.Forms.Button buttonChangeInfo;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBoxSearchFriendId;
+        public System.Windows.Forms.TextBox textBoxSearchFriendId;
         private System.Windows.Forms.Button buttonGoSearchFriend;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBoxBackgroundColor;
+        public System.Windows.Forms.ComboBox comboBoxBackgroundColor;
         private System.Windows.Forms.Button buttonBackgroundColor;
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.Panel panel1;

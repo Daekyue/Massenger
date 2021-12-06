@@ -13,6 +13,7 @@ namespace Client3
 {
     public partial class JoinForm : Form
     {
+        int check_click = 0;
         public JoinForm()
         {
             InitializeComponent();
@@ -22,7 +23,8 @@ namespace Client3
             this.Close();
         }
 
-
+        //상단바 컨트롤
+        #region
         private Point mousePoint;
 
         // 마우스 클릭시 먼저 선언된 mousePoint변수에 현재 마우스 위치값이 들어갑니다.
@@ -40,20 +42,29 @@ namespace Client3
                     this.Top - (mousePoint.Y - e.Y));
             }
         }
+        #endregion
 
+        //가입 완료버튼 
         private void buttonJoinInfoComplete_Click(object sender, EventArgs e)
         {
-            saveMemberInform();
-            insertFriendTable();
-            goLogInForm();      // 수정한 부분!!!!!!!!!!!
+            if (check_click == 0)
+            {
+                MessageBox.Show("아이디 중복확인을 해주세요");
+            }
+            else
+            {
+                saveMemberInform();
+                this.Close();
+                LoginForm.GetInstance().Visible = true;
+            }
         }
-        private void goLogInForm()      // 수정한부분!!!!!!!!!!
+        private void goLogInForm()
         {
             this.Close();
-            LoginForm fm = new LoginForm();
-            fm.Show();
+            LoginForm.GetInstance().Visible = true;
         }
 
+        //디비에 가입 된 회원 정보 넣기
         private void saveMemberInform()
         {
             var id = textBoxJoinId.Text;
@@ -72,21 +83,11 @@ namespace Client3
             }
 
         }
-        private void insertFriendTable()
-        {
-            string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
-            using (MySqlConnection conn = new MySqlConnection(strconn))
-            {
-                conn.Open();
-                string query = "Insert Into Friend(userId) values('" + textBoxJoinId.Text + "')"; // 수정한 부분 Create 테이블 삭제
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.ExecuteNonQuery();
-            }
-        }
 
+        // 아이디 중복 확인
         private void buttonCheckDuplicate_Click(object sender, EventArgs e)
         {
-
+            check_click = 1;
             int i = 0;
             string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
             using (MySqlConnection conn = new MySqlConnection(strconn))
@@ -112,6 +113,17 @@ namespace Client3
                 }
                 conn.Close();
             }
+        }
+
+        private void buttonSearchAddress_Click(object sender, EventArgs e)
+        {
+            SearchAddress frm = new SearchAddress();
+            frm.ShowDialog();
+            if (frm.Tag == null) { return; }
+            DataRow dr = (DataRow)frm.Tag;
+
+            textBoxAddressNumber.Text = dr["zonecode"].ToString();
+            textBoxJoinAdderss.Text = dr["ADDR1"].ToString();
         }
     }
 }

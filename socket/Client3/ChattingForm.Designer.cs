@@ -37,7 +37,7 @@ namespace Client3
             this.buttonSend = new System.Windows.Forms.Button();
             this.buttonSearchChatting = new System.Windows.Forms.Button();
             this.buttonExport = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelChattingTarget = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,9 +55,10 @@ namespace Client3
             this.label_LoinClose.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label_LoinClose.Location = new System.Drawing.Point(18, 10);
             this.label_LoinClose.Name = "label_LoinClose";
-            this.label_LoinClose.Size = new System.Drawing.Size(18, 17);
+            this.label_LoinClose.Size = new System.Drawing.Size(15, 14);
             this.label_LoinClose.TabIndex = 0;
             this.label_LoinClose.Text = "X";
+            this.label_LoinClose.Click += new System.EventHandler(this.labelLoinClose_Click);
             // 
             // panel3
             // 
@@ -85,6 +86,7 @@ namespace Client3
             this.textBoxSendMsg.Name = "textBoxSendMsg";
             this.textBoxSendMsg.Size = new System.Drawing.Size(349, 38);
             this.textBoxSendMsg.TabIndex = 24;
+            this.textBoxSendMsg.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSendMsg_KeyDown);
             // 
             // buttonSend
             // 
@@ -98,6 +100,7 @@ namespace Client3
             this.buttonSend.TabIndex = 25;
             this.buttonSend.Text = "전송";
             this.buttonSend.UseVisualStyleBackColor = false;
+            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
             // 
             // buttonSearchChatting
             // 
@@ -126,15 +129,15 @@ namespace Client3
             this.buttonExport.Text = "내보내기";
             this.buttonExport.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // labelChattingTarget
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(12, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 22);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "채팅 하는 사람";
+            this.labelChattingTarget.AutoSize = true;
+            this.labelChattingTarget.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.labelChattingTarget.Location = new System.Drawing.Point(12, 69);
+            this.labelChattingTarget.Name = "labelChattingTarget";
+            this.labelChattingTarget.Size = new System.Drawing.Size(106, 18);
+            this.labelChattingTarget.TabIndex = 28;
+            this.labelChattingTarget.Text = "채팅 하는 사람";
             // 
             // ChattingForm
             // 
@@ -142,7 +145,7 @@ namespace Client3
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.ClientSize = new System.Drawing.Size(463, 623);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelChattingTarget);
             this.Controls.Add(this.buttonExport);
             this.Controls.Add(this.buttonSearchChatting);
             this.Controls.Add(this.buttonSend);
@@ -154,6 +157,9 @@ namespace Client3
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ChattingForm";
             this.Text = "ChattingForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChattingForm_FormClosing);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.form_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.form_MouseMove);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
@@ -166,11 +172,11 @@ namespace Client3
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label_LoinClose;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBoxChatting;
+        public System.Windows.Forms.TextBox textBoxChatting;
         private System.Windows.Forms.TextBox textBoxSendMsg;
         private System.Windows.Forms.Button buttonSend;
         private System.Windows.Forms.Button buttonSearchChatting;
         private System.Windows.Forms.Button buttonExport;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelChattingTarget;
     }
 }

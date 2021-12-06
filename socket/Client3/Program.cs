@@ -38,7 +38,7 @@ namespace Client3
 
                 // 데이터 타입에 따른 메시지 출력 분기
                 if (mode == "MSG") ChatWindow.SetCharView(data);
-                else if (mode == "LIS") ChatWindow.SetCharList(data);
+                //else if (mode == "LIS") ChatWindow.SetCharList(data);
                 else if (mode == "CRL") ChatRoom.SetChatRoomView(data);
 
             }
@@ -55,9 +55,10 @@ namespace Client3
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Client3_login());
-            (new LoginForm()).Show();
-            Application.Run();
+            Application.Run(LoginForm.GetInstance());
+            // Application.Run(new ChattingForm());
+            /*(new LoginForm()).Show();
+            Application.Run();*/
         }
     }
 }
