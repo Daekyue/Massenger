@@ -43,6 +43,8 @@ namespace Client3
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(373, 39);
             this.panel3.TabIndex = 19;
+            this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.form_MouseDown);
+            this.panel3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.form_MouseMove);
             // 
             // label_LoinClose
             // 
@@ -50,7 +52,7 @@ namespace Client3
             this.label_LoinClose.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label_LoinClose.Location = new System.Drawing.Point(18, 10);
             this.label_LoinClose.Name = "label_LoinClose";
-            this.label_LoinClose.Size = new System.Drawing.Size(15, 14);
+            this.label_LoinClose.Size = new System.Drawing.Size(18, 17);
             this.label_LoinClose.TabIndex = 0;
             this.label_LoinClose.Text = "X";
             this.label_LoinClose.Click += new System.EventHandler(this.label_LoinClose_Click);
@@ -58,22 +60,23 @@ namespace Client3
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 12F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label1.Location = new System.Drawing.Point(14, 90);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 18);
+            this.label1.Size = new System.Drawing.Size(162, 25);
             this.label1.TabIndex = 23;
             this.label1.Text = "친구의 친구 검색 결과";
             // 
             // listBoxFriend_friend
             // 
             this.listBoxFriend_friend.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBoxFriend_friend.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.listBoxFriend_friend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.listBoxFriend_friend.FormattingEnabled = true;
+            this.listBoxFriend_friend.ItemHeight = 18;
             this.listBoxFriend_friend.Location = new System.Drawing.Point(18, 128);
             this.listBoxFriend_friend.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxFriend_friend.Name = "listBoxFriend_friend";
-            this.listBoxFriend_friend.Size = new System.Drawing.Size(390, 143);
+            this.listBoxFriend_friend.Size = new System.Drawing.Size(390, 126);
             this.listBoxFriend_friend.TabIndex = 21;
             // 
             // panel4

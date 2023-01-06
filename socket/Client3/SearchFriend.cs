@@ -80,14 +80,22 @@ namespace Client3
         
         private void buttonAddFriend_Click(object sender, EventArgs e)
         {
+
+            ListForm.GetInstance().listViewFriend.Items.Clear();
+            ListForm.GetInstance().listViewBirthday.Items.Clear();
+
+
             string selected_string = listBoxResultSearchFriend.SelectedItem.ToString();
             string[] temp_string= selected_string.Split(' ');
 
 
             string search_id = temp_string[0];
             insert_Friend(search_id);
-            ListForm.GetInstance().listBoxFriendList.Items.Clear();
+            //ListForm.GetInstance().listBoxFriendList.Items.Clear();
             ListForm.GetInstance().loadFriendList();
+            ListForm.GetInstance().loadBirthdayFriend();
+
+
         }
         private void insert_Friend(string search_id)//listBoxResultSearchFriend_SelectedIndexChanged_1(object sender, EventArgs e)
         {

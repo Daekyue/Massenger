@@ -22,15 +22,23 @@ namespace Client3
         {
             return _instance;
         }
-        public ChangeInfoForm()
+        public ChangeInfoForm() //1210 수정
         {
-            InitializeComponent();
+            InitializeComponent(); 
 
+        }
+
+        public void LoadChangeInfo(string changed_user_id)
+        {
             string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
             using (MySqlConnection conn = new MySqlConnection(strconn))
             {
                 conn.Open();
-                string query = "select*from JoinMassenger WHERE ID ='" + user_id + "'";  //string query = "select * from JoinMassenger where ID ='" + textBoxLoginId.Text + "' and PW = '" + textBoxLoginPassword.Text + "'";
+                string query = $@"select *
+                                from(select cast(AES_DECRYPT(UNHEX(PW), '1') as char(100)) as decr from JoinMassenger where ID = '" + changed_user_id + "') as pp, JoinMassenger WHERE ID = '" + changed_user_id + "'";
+
+
+                //string query = "select * from JoinMassenger where ID ='" + textBoxLoginId.Text + "' and PW = '" + textBoxLoginPassword.Text + "'";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
 
@@ -38,10 +46,11 @@ namespace Client3
                 {
                     var name = rdr["name"];
                     var Birthday = rdr["Birthday"];
-                    var PW = rdr["PW"];
+                    var PW = rdr["decr"];
                     var Nickname = rdr["Nickname"];
-                    var Address = rdr["Address"]; 
+                    var Address = rdr["Address"];
                     var Statemessage = rdr["Statemessage"];
+                    var Addressnumber = rdr["Addressnumber"];
 
                     textBoxChangeName.Text = Convert.ToString(name);
                     textBoxChangeBirth.Text = Convert.ToString(Birthday);
@@ -49,10 +58,11 @@ namespace Client3
                     textBoxChangeNickname.Text = Convert.ToString(Nickname);
                     textBoxChangeAddress.Text = Convert.ToString(Address);
                     textBoxChangeStatemessage.Text = Convert.ToString(Statemessage);
+                    textBoxChangeAddressnumber.Text = Convert.ToString(Addressnumber);
                 }
             }
-
         }
+
         private void labelLoinClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -76,17 +86,23 @@ namespace Client3
                     this.Top - (mousePoint.Y - e.Y));
             }
         }
-        private void buttonChangeInfoSave_Click(object sender, EventArgs e)
+        private void buttonChangeInfoSave_Click(object sender, EventArgs e) // 1210 수정
         {
             string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
             using (MySqlConnection conn = new MySqlConnection(strconn))// 
             {
                 conn.Open(); // 새로운 커넥션을 오픈을 하고
-                string query = "UPDATE JoinMassenger SET Name = '" + textBoxChangeName.Text + "', Birthday = '" + textBoxChangeBirth.Text + "' , PW='" + textBoxChangePassword.Text + "',Nickname='" + textBoxChangeNickname.Text + "',Address='" + textBoxChangeAddress.Text + "',Statemessage = '" + textBoxChangeStatemessage.Text + "' " +
-                    "where ID like '" + user_id + "' "; //query문을 입력하여 명령 실행 가능
+                string query = "UPDATE JoinMassenger SET Name = '" + textBoxChangeName.Text + "', " +
+                    "Birthday = '" + textBoxChangeBirth.Text + "' , " +
+                    "PW= hex(aes_encrypt('"+ textBoxChangePassword.Text+"', '1')), " +
+                    "Nickname='" + textBoxChangeNickname.Text + "'," +
+                    "Address='" + textBoxChangeAddress.Text + "'," +
+                    "Statemessage = '" + textBoxChangeStatemessage.Text + "'," +
+                    "Addressnumber='" + textBoxChangeAddressnumber.Text + "' " +
+                    "where ID like '" + user_id + "' ";
                 MySqlCommand cmd = new MySqlCommand(query, conn); // 
                 cmd.ExecuteNonQuery(); // 
-
+               // hex(aes_encrypt('{textBoxChangeBirth.Text}', '1')
             }
             updatefriendtable();
             MessageBox.Show("변경하였습니다");
@@ -108,7 +124,18 @@ namespace Client3
             }
         }
 
-       
+        private void buttonSearchAddress_Click(object sender, EventArgs e)
+        {
+            SearchAddress frm = new SearchAddress();
+            frm.ShowDialog();
+            if (frm.Tag == null) { return; }
+            DataRow dr = (DataRow)frm.Tag;
+
+            textBoxChangeAddressnumber.Text = dr["zonecode"].ToString();
+            textBoxChangeAddress.Text = dr["ADDR1"].ToString();
+        }
+
+      
     }
 }
   

@@ -53,7 +53,7 @@ namespace Client3
             this.label_LoinClose.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label_LoinClose.Location = new System.Drawing.Point(18, 10);
             this.label_LoinClose.Name = "label_LoinClose";
-            this.label_LoinClose.Size = new System.Drawing.Size(15, 14);
+            this.label_LoinClose.Size = new System.Drawing.Size(18, 17);
             this.label_LoinClose.TabIndex = 0;
             this.label_LoinClose.Text = "X";
             this.label_LoinClose.Click += new System.EventHandler(this.labelLoinClose_Click);
@@ -70,7 +70,7 @@ namespace Client3
             // textBoxResultSearchWord
             // 
             this.textBoxResultSearchWord.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxResultSearchWord.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBoxResultSearchWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.textBoxResultSearchWord.Location = new System.Drawing.Point(26, 115);
             this.textBoxResultSearchWord.Multiline = true;
             this.textBoxResultSearchWord.Name = "textBoxResultSearchWord";
@@ -82,22 +82,23 @@ namespace Client3
             this.buttonGoSearchWord.BackColor = System.Drawing.Color.BurlyWood;
             this.buttonGoSearchWord.FlatAppearance.BorderColor = System.Drawing.Color.BlanchedAlmond;
             this.buttonGoSearchWord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonGoSearchWord.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.buttonGoSearchWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.buttonGoSearchWord.Location = new System.Drawing.Point(309, 62);
             this.buttonGoSearchWord.Name = "buttonGoSearchWord";
             this.buttonGoSearchWord.Size = new System.Drawing.Size(75, 31);
             this.buttonGoSearchWord.TabIndex = 14;
             this.buttonGoSearchWord.Text = "검색";
             this.buttonGoSearchWord.UseVisualStyleBackColor = false;
+            this.buttonGoSearchWord.Click += new System.EventHandler(this.buttonGoSearchWord_Click);
             // 
             // textBoxSearchWord
             // 
             this.textBoxSearchWord.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.textBoxSearchWord.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxSearchWord.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBoxSearchWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.textBoxSearchWord.Location = new System.Drawing.Point(26, 67);
             this.textBoxSearchWord.Name = "textBoxSearchWord";
-            this.textBoxSearchWord.Size = new System.Drawing.Size(277, 14);
+            this.textBoxSearchWord.Size = new System.Drawing.Size(277, 17);
             this.textBoxSearchWord.TabIndex = 13;
             // 
             // panel1

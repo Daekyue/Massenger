@@ -55,6 +55,9 @@ namespace Client3
         public void loadFriend_FriendList(string friend_name)
         {
             //string search_id = SetupForm.GetInstance().textBoxSearchFriendId.Text;
+
+            listBoxFriend_friend.Items.Clear();
+
             string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
             using (MySqlConnection conn = new MySqlConnection(strconn))
             {

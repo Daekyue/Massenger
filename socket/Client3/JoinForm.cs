@@ -54,6 +54,7 @@ namespace Client3
             else
             {
                 saveMemberInform();
+                MessageBox.Show("회원가입이 완료되었습니다.");
                 this.Close();
                 LoginForm.GetInstance().Visible = true;
             }
@@ -73,11 +74,12 @@ namespace Client3
             var address = textBoxJoinAdderss.Text;
             var nick = textBoxJoinNickname.Text;
             var birthday = textBoxJoinBirth.Text;
+            var addressnumber = textBoxAddressNumber.Text;
             string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
             using (MySqlConnection conn = new MySqlConnection(strconn))
             {
                 conn.Open();
-                var query = $@" INSERT INTO s5532761.JoinMassenger(ID, PW, name, Address, Nickname, BIrthday)values ('{id}', hex(aes_encrypt('{pw}','1')),'{name}','{address}','{nick}','{birthday}')";
+                var query = $@" INSERT INTO s5532761.JoinMassenger(ID, PW, name, Address, Nickname, BIrthday,AddressNumber)values ('{id}', hex(aes_encrypt('{pw}','1')),'{name}','{address}','{nick}','{birthday}','{addressnumber}')";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.ExecuteNonQuery();
             }

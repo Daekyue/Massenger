@@ -64,7 +64,7 @@ namespace Client3
             this.label_LoinClose.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label_LoinClose.Location = new System.Drawing.Point(21, 10);
             this.label_LoinClose.Name = "label_LoinClose";
-            this.label_LoinClose.Size = new System.Drawing.Size(15, 14);
+            this.label_LoinClose.Size = new System.Drawing.Size(18, 17);
             this.label_LoinClose.TabIndex = 0;
             this.label_LoinClose.Text = "X";
             this.label_LoinClose.Click += new System.EventHandler(this.labelLoinClose_Click);
@@ -82,7 +82,7 @@ namespace Client3
             // 
             this.groupBox2.Controls.Add(this.labelNowUserId_Setup);
             this.groupBox2.Controls.Add(this.buttonChangeInfo);
-            this.groupBox2.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox2.Location = new System.Drawing.Point(31, 114);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
@@ -95,10 +95,10 @@ namespace Client3
             // labelNowUserId_Setup
             // 
             this.labelNowUserId_Setup.AutoSize = true;
-            this.labelNowUserId_Setup.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.labelNowUserId_Setup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.labelNowUserId_Setup.Location = new System.Drawing.Point(38, 52);
             this.labelNowUserId_Setup.Name = "labelNowUserId_Setup";
-            this.labelNowUserId_Setup.Size = new System.Drawing.Size(90, 13);
+            this.labelNowUserId_Setup.Size = new System.Drawing.Size(107, 18);
             this.labelNowUserId_Setup.TabIndex = 11;
             this.labelNowUserId_Setup.Text = "로그인 된 아이디";
             // 
@@ -107,11 +107,11 @@ namespace Client3
             this.buttonChangeInfo.BackColor = System.Drawing.Color.BurlyWood;
             this.buttonChangeInfo.FlatAppearance.BorderColor = System.Drawing.Color.BlanchedAlmond;
             this.buttonChangeInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonChangeInfo.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.buttonChangeInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.buttonChangeInfo.Location = new System.Drawing.Point(204, 46);
             this.buttonChangeInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonChangeInfo.Name = "buttonChangeInfo";
-            this.buttonChangeInfo.Size = new System.Drawing.Size(80, 29);
+            this.buttonChangeInfo.Size = new System.Drawing.Size(80, 35);
             this.buttonChangeInfo.TabIndex = 9;
             this.buttonChangeInfo.Text = "정보수정";
             this.buttonChangeInfo.UseVisualStyleBackColor = false;
@@ -122,7 +122,7 @@ namespace Client3
             this.groupBox3.Controls.Add(this.panel1);
             this.groupBox3.Controls.Add(this.textBoxSearchFriendId);
             this.groupBox3.Controls.Add(this.buttonGoSearchFriend);
-            this.groupBox3.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox3.Location = new System.Drawing.Point(31, 223);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
@@ -131,6 +131,7 @@ namespace Client3
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "친구추가";
+           
             // 
             // panel1
             // 
@@ -144,11 +145,11 @@ namespace Client3
             // 
             this.textBoxSearchFriendId.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.textBoxSearchFriendId.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxSearchFriendId.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBoxSearchFriendId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.textBoxSearchFriendId.Location = new System.Drawing.Point(33, 42);
             this.textBoxSearchFriendId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxSearchFriendId.Name = "textBoxSearchFriendId";
-            this.textBoxSearchFriendId.Size = new System.Drawing.Size(119, 14);
+            this.textBoxSearchFriendId.Size = new System.Drawing.Size(119, 17);
             this.textBoxSearchFriendId.TabIndex = 11;
             // 
             // buttonGoSearchFriend
@@ -156,11 +157,11 @@ namespace Client3
             this.buttonGoSearchFriend.BackColor = System.Drawing.Color.BurlyWood;
             this.buttonGoSearchFriend.FlatAppearance.BorderColor = System.Drawing.Color.BlanchedAlmond;
             this.buttonGoSearchFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonGoSearchFriend.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.buttonGoSearchFriend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.buttonGoSearchFriend.Location = new System.Drawing.Point(204, 42);
             this.buttonGoSearchFriend.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonGoSearchFriend.Name = "buttonGoSearchFriend";
-            this.buttonGoSearchFriend.Size = new System.Drawing.Size(80, 25);
+            this.buttonGoSearchFriend.Size = new System.Drawing.Size(80, 36);
             this.buttonGoSearchFriend.TabIndex = 12;
             this.buttonGoSearchFriend.Text = "검색";
             this.buttonGoSearchFriend.UseVisualStyleBackColor = false;
@@ -170,7 +171,7 @@ namespace Client3
             // 
             this.groupBox1.Controls.Add(this.comboBoxBackgroundColor);
             this.groupBox1.Controls.Add(this.buttonBackgroundColor);
-            this.groupBox1.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.Location = new System.Drawing.Point(31, 327);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
@@ -184,16 +185,17 @@ namespace Client3
             // 
             this.comboBoxBackgroundColor.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.comboBoxBackgroundColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxBackgroundColor.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.comboBoxBackgroundColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.comboBoxBackgroundColor.FormattingEnabled = true;
             this.comboBoxBackgroundColor.Items.AddRange(new object[] {
-            "white",
-            "red",
-            "blue"});
+            "blanchedalmond",
+            "burlywood",
+            "darkseagreen",
+            "white"});
             this.comboBoxBackgroundColor.Location = new System.Drawing.Point(31, 44);
             this.comboBoxBackgroundColor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxBackgroundColor.Name = "comboBoxBackgroundColor";
-            this.comboBoxBackgroundColor.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxBackgroundColor.Size = new System.Drawing.Size(121, 26);
             this.comboBoxBackgroundColor.TabIndex = 0;
             // 
             // buttonBackgroundColor
@@ -201,11 +203,11 @@ namespace Client3
             this.buttonBackgroundColor.BackColor = System.Drawing.Color.BurlyWood;
             this.buttonBackgroundColor.FlatAppearance.BorderColor = System.Drawing.Color.BlanchedAlmond;
             this.buttonBackgroundColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonBackgroundColor.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.buttonBackgroundColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.buttonBackgroundColor.Location = new System.Drawing.Point(204, 44);
             this.buttonBackgroundColor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonBackgroundColor.Name = "buttonBackgroundColor";
-            this.buttonBackgroundColor.Size = new System.Drawing.Size(80, 25);
+            this.buttonBackgroundColor.Size = new System.Drawing.Size(80, 35);
             this.buttonBackgroundColor.TabIndex = 1;
             this.buttonBackgroundColor.Text = "변경";
             this.buttonBackgroundColor.UseVisualStyleBackColor = false;
@@ -216,7 +218,7 @@ namespace Client3
             this.buttonLogout.BackColor = System.Drawing.Color.BurlyWood;
             this.buttonLogout.FlatAppearance.BorderColor = System.Drawing.Color.BlanchedAlmond;
             this.buttonLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLogout.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.buttonLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.buttonLogout.Location = new System.Drawing.Point(144, 438);
             this.buttonLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonLogout.Name = "buttonLogout";
@@ -229,10 +231,10 @@ namespace Client3
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("나눔스퀘어라운드 Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(158, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 18);
+            this.label1.Size = new System.Drawing.Size(42, 25);
             this.label1.TabIndex = 19;
             this.label1.Text = "설정";
             // 

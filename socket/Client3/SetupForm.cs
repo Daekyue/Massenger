@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace Client3
 {
     public partial class SetupForm : Form
     {
-        //싱글턴
+        //싱글톤
         # region
         private static SetupForm _instance = new SetupForm();
 
@@ -57,21 +58,26 @@ namespace Client3
         //채팅방에 채팅텍스트박스 변경하기
         private void buttonBackgroundColor_Click(object sender, EventArgs e)
         {
-            string backcolor = comboBoxBackgroundColor.Text;
-            if (backcolor == null)
+            string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
+            using (MySqlConnection conn = new MySqlConnection(strconn))
             {
-                backcolor = "White";
+                string user_id = LoginForm.GetInstance().textBoxLoginId.Text;
+                var query = " update JoinMassenger SET background = '" + comboBoxBackgroundColor.SelectedItem.ToString() + "' where ID='" + user_id + "'";
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.ExecuteReader();
+                conn.Close();
             }
-            Color mycolor = ColorTranslator.FromHtml(backcolor);
-            ChattingForm.GetInstance().changeBackcolor(mycolor);
         }
 
         //로그아웃
         public void buttonLogout_Click(object sender, EventArgs e)
         {
-            LoginForm.GetInstance().Show();
+            ListForm.GetInstance().listViewFriend.Items.Clear();
+            ListForm.GetInstance().listViewBirthday.Items.Clear();
 
 
+            LoginForm.GetInstance().Visible = true;
             ListForm.GetInstance().Visible = false;
 
             if (LoginForm.GetInstance().checkBoxAutoLogin.Checked == false)
@@ -80,16 +86,25 @@ namespace Client3
                 LoginForm.GetInstance().textBoxLoginPassword.Clear();
             }
 
-            this.Close();
-            foreach (System.Windows.Forms.Form TheForm in this.MdiChildren)
+            /*foreach (System.Windows.Forms.Form TheForm in this.MdiChildren)
             {
                 TheForm.Dispose();
-            }
+            }*/
 
             this.Visible = false;
 
             SetupForm.GetInstance().comboBoxBackgroundColor.Text = "White";
             //Properties.Settings.Default.Save();
+            ChangeInfoForm.GetInstance().textBoxChangeAddress.Clear();
+            ChangeInfoForm.GetInstance().textBoxChangeName.Clear();
+            ChangeInfoForm.GetInstance().textBoxChangeBirth.Clear();
+            ChangeInfoForm.GetInstance().textBoxChangePassword.Clear();
+            ChangeInfoForm.GetInstance().textBoxChangeNickname.Clear();
+            ChangeInfoForm.GetInstance().textBoxChangeStatemessage.Clear();
+            ChangeInfoForm.GetInstance().textBoxChangeAddressnumber.Clear();
+
+
+
 
         }
 
@@ -103,9 +118,10 @@ namespace Client3
         //회원정보 수정
         private void buttonChangeInfo_Click(object sender, EventArgs e)
         {
+            ChangeInfoForm.GetInstance().LoadChangeInfo(LoginForm.GetInstance().textBoxLoginId.Text);
             ChangeInfoForm.GetInstance().ShowDialog();
         }
 
-
+       
     }
 }

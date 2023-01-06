@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,7 +26,7 @@ namespace Client3
 
         private void labelLoinClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Visible = false;
         }
 
 
@@ -47,6 +48,30 @@ namespace Client3
             }
         }
 
-      
+        private void buttonGoSearchWord_Click(object sender, EventArgs e)
+        {
+            string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
+            using (MySqlConnection conn = new MySqlConnection(strconn))
+            {
+                conn.Open();
+                string user_id = LoginForm.GetInstance().textBoxLoginId.Text;
+                string query = "select chat from chat where sender like '" + user_id + "' AND receiver like '" + ChattingForm.GetInstance().labelChattingTarget.Text + "' AND chat like '%" + textBoxSearchWord.Text + "%'";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+
+                textBoxResultSearchWord.Text = "";
+
+                while (rdr.Read())
+                {
+                    string chat = rdr["chat"].ToString();
+                    textBoxResultSearchWord.Text += chat + "\r\n";
+
+                }
+
+                conn.Close();
+            }
+        }
+
     }
 }

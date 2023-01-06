@@ -27,12 +27,34 @@ namespace Client3
         public LoginForm()
         {
             InitializeComponent();
-           /* textBoxLoginId.Text = Properties.Settings.Default.ID;
+            textBoxLoginId.Text = Properties.Settings.Default.ID;
             textBoxLoginPassword.Text = Properties.Settings.Default.Password;
             checkBoxAutoLogin.Checked = Properties.Settings.Default.autoLogIn;
-*/
-
         }
+
+        public void InitAutoLogin()
+        {
+            string auto_ID;
+            string auto_PW;
+            if (checkBoxAutoLogin.Checked == true)
+            {
+                string strconn = "server=27.96.130.41;Database=s5532761;Uid=s5532761;Pwd=s5532761;Charset=utf8";
+                using (MySqlConnection conn = new MySqlConnection(strconn))
+                {
+                    conn.Open();
+                    string query = "select ID, PW from JoinMassenger where Massenger_id = 1";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataReader rdr = cmd.ExecuteReader();
+
+                    rdr.Read();
+
+                    auto_ID = rdr["ID"].ToString();
+                    auto_PW = rdr["PW"].ToString();
+                }
+            }
+        }
+
         
         private void labelLoinClose_Click(object sender, EventArgs e)
         {
@@ -88,10 +110,29 @@ namespace Client3
                    // Properties.Settings.Default.ID = textBoxLoginId.Text;
                     this.Visible = false;
                     //this.Hide();
+                    
                     ListForm.GetInstance().loadFriendList();
                     ListForm.GetInstance().loadBirthdayFriend();
-                    ListForm.GetInstance().Show();
-                 
+                    ListForm.GetInstance().loadChattingList();
+                    ListForm.GetInstance().Visible = true;
+
+                    if (checkBoxAutoLogin.Checked == true)
+                    {
+                        Properties.Settings.Default.ID = textBoxLoginId.Text;
+                        Properties.Settings.Default.Password = textBoxLoginPassword.Text;
+                        Properties.Settings.Default.autoLogIn = true;
+                        Properties.Settings.Default.Save();
+                        // MessageBox.Show(Properties.Settings.Default.ID);
+                    }
+                    else
+                    {
+                        Properties.Settings.Default.ID = null;
+                        Properties.Settings.Default.Password = null;
+                        Properties.Settings.Default.autoLogIn = false;
+                        Properties.Settings.Default.Save();
+                        // MessageBox.Show(Properties.Settings.Default.ID);
+                    }
+
                 }
                 conn.Close();
             }
@@ -101,22 +142,22 @@ namespace Client3
         // 자동 로그인 체크 x -> 아이디, 패스워드, 체크x로 저장
         private void checkBoxAutoLogin_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxAutoLogin.Checked == true)
+            /*if (checkBoxAutoLogin.Checked == true)
             {
-               /* Properties.Settings.Default.ID = textBoxLoginId.Text;
+                Properties.Settings.Default.ID = textBoxLoginId.Text;
                 Properties.Settings.Default.Password = textBoxLoginPassword.Text;
                 Properties.Settings.Default.autoLogIn = true;
-                Properties.Settings.Default.Save();*/
-               // MessageBox.Show(Properties.Settings.Default.ID);
+                Properties.Settings.Default.Save();
+                // MessageBox.Show(Properties.Settings.Default.ID);
             }
             else
             {
-               /* Properties.Settings.Default.ID = null;
+                Properties.Settings.Default.ID = null;
                 Properties.Settings.Default.Password = null;
                 Properties.Settings.Default.autoLogIn = false;
-                Properties.Settings.Default.Save();*/
+                Properties.Settings.Default.Save();
                 // MessageBox.Show(Properties.Settings.Default.ID);
-            }
+            }*/
 
         }
 
